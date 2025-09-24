@@ -10,7 +10,7 @@ export default function Home() {
     const [splitDuration, setSplitDuration] = useState<number>(15);
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-4xl flex flex-col h-dvh justify-between mb-10">
+        <div className="container mx-auto px-4 py-8 max-w-4xl flex flex-col h-dvh justify-between pb-10">
             <div className="text-center mb-8 mt-24">
                 <h1 className="text-4xl font-bold text-foreground mb-4">
                     SliceAudio
@@ -35,7 +35,7 @@ export default function Home() {
                 )}
             </div>
             <div
-                className="text-white/70 mt-10 mb-20">
+                className="text-white/70 mt-10 mb-10">
                     This website has been developed with the generous financial support of
                     <LinkPreview url="https://www.linkedin.com/in/francisco-jc-lopes/"
                                  isStatic
