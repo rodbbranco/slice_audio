@@ -28,6 +28,7 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
   const [progress, setProgress] = useState(0);
   const [isCreatingZip, setIsCreatingZip] = useState(false);
   const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
+  const [isLoadingFfmpeg, setIsLoadingFfmpeg] = useState(false);
   const ffmpegRef = useRef<FFmpeg>();
 
   const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +41,7 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
   const loadFFmpeg = async () => {
     if (ffmpegLoaded || ffmpegRef.current) return;
     
+    setIsLoadingFfmpeg(true);
     try {
       const ffmpeg = new FFmpeg();
       ffmpegRef.current = ffmpeg;
@@ -63,6 +65,8 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
     } catch (err) {
       console.error('Failed to load FFmpeg:', err);
       setError('Failed to load FFmpeg. Please refresh and try again.');
+    } finally {
+      setIsLoadingFfmpeg(false);
     }
   };
 
@@ -72,6 +76,11 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
   }, []);
 
   const splitAudio = async () => {
+    // Load FFmpeg if not already loaded
+    if (!ffmpegLoaded) {
+      await loadFFmpeg();
+    }
+
     if (!ffmpegRef.current) {
       setError('FFmpeg not loaded. Please try again.');
       return;
@@ -84,13 +93,6 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
 
     try {
       const ffmpeg = ffmpegRef.current;
-      
-      // Load FFmpeg if not already loaded
-      if (!ffmpegLoaded) {
-        setProgress(5);
-        await loadFFmpeg();
-        setProgress(10);
-      }
 
       // Convert file to buffer and write to FFmpeg filesystem
       const fileBuffer = await audioFile.arrayBuffer();
@@ -274,7 +276,7 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
             
             <Button
               onClick={splitAudio}
-              disabled={isProcessing}
+              disabled={isProcessing || isLoadingFfmpeg}
               className={cn(
                 "px-6 py-2 rounded-lg font-medium transition-colors",
                 "bg-primary text-primary-foreground hover:bg-primary/90",
@@ -282,7 +284,12 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
                 "flex items-center space-x-2"
               )}
             >
-              {isProcessing ? (
+              {isLoadingFfmpeg ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Processing</span>
+                </>
+              ) : isProcessing ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
                   <span>Processing...</span>
