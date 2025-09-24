@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Upload, X, Music } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,7 @@ interface AudioUploaderProps {
 export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -74,6 +75,10 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
     setError(null);
   };
 
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
+
   const formatFileSize = (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
@@ -94,43 +99,55 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
       </div>
 
       {!selectedFile ? (
-        <div
-          className={cn(
-            "relative border-2 border-dashed rounded-lg p-8 text-center transition-colors",
-            isDragOver
-              ? "border-emerald-400 bg-primary/5"
-              : "border-border hover:border-emerald-400",
-            "cursor-pointer"
-          )}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
+        <div>
+          {/* Hidden file input */}
           <input
+            ref={fileInputRef}
             type="file"
             accept="audio/*"
             onChange={handleFileInput}
-            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            className="hidden"
           />
           
-          <div className="flex flex-col items-center space-y-4">
-            <div className={cn(
-              "w-16 h-16 rounded-full flex items-center justify-center",
-              isDragOver ? "bg-emerald-400 text-primary-foreground" : "bg-white"
-            )}>
-              <Upload className={cn(
-                  isDragOver ? "text-white" : "text-emerald-400",
-              )}
-              />
-            </div>
-            
-            <div>
-              <p className="text-lg font-medium text-foreground mb-2">
-                {isDragOver ? "Drop your audio file here" : "Choose audio file or drag and drop"}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Supports MP3, WAV, OGG, AAC, FLAC, M4A (max 500MB)
-              </p>
+          {/* Drag and drop area */}
+          <div
+            className={cn(
+              "border-2 border-dashed rounded-lg p-8 text-center transition-colors",
+              isDragOver
+                ? "border-emerald-400 bg-primary/5"
+                : "border-border hover:border-emerald-400"
+            )}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            <div className="flex flex-col items-center space-y-4">
+              <div className={cn(
+                "w-16 h-16 rounded-full flex items-center justify-center",
+                isDragOver ? "bg-emerald-400 text-primary-foreground" : "bg-white"
+              )}>
+                <Upload className={cn(
+                    isDragOver ? "text-white" : "text-emerald-400",
+                )}
+                />
+              </div>
+              
+              <div>
+                <p className="text-lg font-medium text-foreground mb-2">
+                  {isDragOver ? "Drop your audio file here" : "Drag and drop your audio file here"}
+                </p>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Supports MP3, WAV, OGG, AAC, FLAC, M4A (max 500MB)
+                </p>
+                
+                {/* Mobile-friendly button */}
+                <button
+                  onClick={handleClick}
+                  className="px-6 py-3 bg-emerald-400 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+                >
+                  Choose File
+                </button>
+              </div>
             </div>
           </div>
         </div>
