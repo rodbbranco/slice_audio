@@ -108,7 +108,7 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
             onChange={handleFileInput}
             className="hidden"
           />
-          
+
           {/* Drag and drop area */}
           <div
             className={cn(
@@ -131,7 +131,7 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
                 )}
                 />
               </div>
-              
+
               <div>
                 <p className="text-lg font-medium text-foreground mb-2">
                   {isDragOver ? "Drop your audio file here" : "Drag and drop your audio file here"}
@@ -139,7 +139,7 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
                 <p className="text-sm text-muted-foreground mb-4">
                   Supports MP3, WAV, OGG, AAC, FLAC, M4A (max 500MB)
                 </p>
-                
+
                 {/* Mobile-friendly button */}
                 <button
                   onClick={handleClick}
@@ -153,13 +153,15 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
         </div>
       ) : (
         <div className="border border-border rounded-lg p-6 bg-card">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-emerald-400 rounded-lg flex items-center justify-center">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center space-x-4 min-w-0 flex-1">
+              <div className="w-12 h-12 bg-emerald-400 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Music className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <p className="font-medium text-background">{selectedFile.name}</p>
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-background truncate" title={selectedFile.name}>
+                  {selectedFile.name}
+                </p>
                 <p className="text-sm text-muted-foreground">
                   {formatFileSize(selectedFile.size)}
                 </p>
@@ -168,7 +170,7 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
             
             <button
               onClick={removeFile}
-              className="p-2 hover:bg-muted rounded-lg transition-colors cursor-pointer"
+              className="p-2 hover:bg-muted rounded-lg transition-colors cursor-pointer flex-shrink-0"
               title="Remove file"
             >
               <X className="w-5 h-5 text-muted-foreground hover:text-background" />

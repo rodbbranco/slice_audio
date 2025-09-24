@@ -10,7 +10,7 @@ export default function Home() {
     const [splitDuration, setSplitDuration] = useState<number>(15);
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-4xl flex flex-col h-dvh justify-between">
+        <div className="container mx-auto px-4 py-8 max-w-4xl flex flex-col h-dvh justify-between mb-10">
             <div className="text-center mb-8 mt-24">
                 <h1 className="text-4xl font-bold text-foreground mb-4">
                     SliceAudio

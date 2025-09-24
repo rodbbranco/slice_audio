@@ -356,12 +356,12 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
                 key={index}
                 className="flex items-center justify-between p-4 border border-border rounded-lg bg-background"
               >
-                <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 min-w-0 flex-1">
+                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Play className="w-4 h-4 text-foreground" />
                   </div>
-                  <div>
-                    <p className="font-medium text-foreground">{segment.name}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-foreground truncate">{segment.name}</p>
                     <p className="text-sm text-muted-foreground">
                       {formatFileSize(segment.size)} • {formatDuration(segment.duration)}
                     </p>
