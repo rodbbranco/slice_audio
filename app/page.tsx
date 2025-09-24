@@ -35,7 +35,7 @@ export default function Home() {
                 )}
             </div>
             <div
-                className="text-white/70 mt-10">
+                className="text-white/70 mb-10">
                     This website has been developed with the generous financial support of
                     <LinkPreview url="https://www.linkedin.com/in/francisco-jc-lopes/"
                                  isStatic
