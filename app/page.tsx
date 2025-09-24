@@ -20,7 +20,7 @@ export default function Home() {
                 </p>
             </div>
 
-            <div className="space-y-8 -mt-32">
+            <div className="space-y-8 mt-10">
                 <AudioUploader
                     onFileSelect={setAudioFile}
                     selectedFile={audioFile}
@@ -35,9 +35,9 @@ export default function Home() {
                 )}
             </div>
             <div
-                className="text-white/70">
+                className="text-white/70 mt-10">
                     This website has been developed with the generous financial support of
-                    <LinkPreview url="/templates"
+                    <LinkPreview url="https://www.linkedin.com/in/francisco-jc-lopes/"
                                  isStatic
                                  className="font-bold text-white/90"
                                  imageSrc="/lopes.jpg"
