@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Audio Splitter",
-    description: "Split your audio files into custom-sized segments",
+    title: "SliceAudio",
+    description: "Slice your audio files into custom-sized segments",
 };
 
 export default function RootLayout({
