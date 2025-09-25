@@ -279,7 +279,7 @@ export function AudioSplitter({ audioFile, splitDuration, onDurationChange }: Au
               disabled={isProcessing || isLoadingFfmpeg}
               className={cn(
                 "px-6 py-2 rounded-lg font-medium transition-colors",
-                "bg-primary text-primary-foreground hover:bg-primary/90",
+                "bg-[#030B06] text-primary-foreground hover:bg-primary/90",
                 "disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed",
                 "flex items-center space-x-2"
               )}

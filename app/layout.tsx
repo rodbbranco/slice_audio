@@ -17,7 +17,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <main className="min-h-screen bg-background">
+        <main className="min-h-screen selection:text-emerald-400 selection:bg-emerald-400/10 bg-emerald-400/5">
             {children}
         </main>
         </body>

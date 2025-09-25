@@ -89,7 +89,7 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
 
   return (
     <div className="w-full">
-      <div className="mb-4">
+      <div className="mb-4 text-center lg:text-left">
         <h2 className="text-2xl font-semibold text-foreground mb-2">
           Upload Audio File
         </h2>
@@ -143,7 +143,7 @@ export function AudioUploader({ onFileSelect, selectedFile }: AudioUploaderProps
                 {/* Mobile-friendly button */}
                 <button
                   onClick={handleClick}
-                  className="px-6 py-3 bg-emerald-400 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+                  className="cursor-pointer px-6 py-3 bg-emerald-400 hover:bg-emerald-500 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
                 >
                   Choose File
                 </button>
