@@ -43,13 +43,13 @@ export default function Home() {
             </div>
             <div
                 className="text-white/70 mt-10 mb-10">
-                    This website has been developed with the generous financial support of
-                    <LinkPreview url="https://www.linkedin.com/in/francisco-jc-lopes/"
-                                 isStatic
-                                 className="font-bold text-white/90"
-                                 imageSrc="/lopes.jpg"
-                    > Francisco Lopes</LinkPreview>
-                    , who contributed $100,000 towards the development of this platform.
+                    {/*This website has been developed with the generous financial support of*/}
+                    {/*<LinkPreview url="https://www.linkedin.com/in/francisco-jc-lopes/"*/}
+                    {/*             isStatic*/}
+                    {/*             className="font-bold text-white/90"*/}
+                    {/*             imageSrc="/lopes.jpg"*/}
+                    {/*> Francisco Lopes</LinkPreview>*/}
+                    {/*, who contributed $100,000 towards the development of this platform.*/}
 
             </div>
         </div>
