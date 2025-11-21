@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: "SliceAudio",
     description: "Slice your audio files into custom-sized segments",
+    openGraph:{
+        images: "https://sliceaudio.vercel.app/opengraph-image.webp"
+    }
 };
 
 export default function RootLayout({
